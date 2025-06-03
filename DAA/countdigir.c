@@ -13,6 +13,6 @@ int main() {
     if (num == 0)
         printf("Number of digits: 1\n");
     else
-        printf("Number of digits: %d\n", countDigits(num > 0 ? num : -num));
+        printf("Number of digits: %d\n", countDigits(num));
     return 0;
 }
