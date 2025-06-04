@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Change Property Example</title>
+    <style>
+        #myBox {
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            color: black;
+            text-align: center;
+            line-height: 100px;
+            font-size: 20px;
+            transition: all 0.8s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myBox">Hello, change my properties!</div>
+    <button onclick="changeProperties()">Change Properties</button>
+
+    <script>
+        function changeProperties() {
+            var box = document.getElementById('myBox');
+            box.style.backgroundColor = 'orange';
+            box.style.width = '400px';
+            box.style.color = 'white';
+            box.style.fontSize = '30px';
+            box.innerHTML = 'Properties Changed!';
+        }
+    </script>
+</body>
+
+</html>

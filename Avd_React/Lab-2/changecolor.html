@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change background color - on button click</title>
+</head>
+<body>
+    <h1>Change background color</h1>
+    <button onclick="changeColor()">Change color</button>
+    <script>
+        function getRandomRGB() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+        function changeColor() {
+            const randomColor = getRandomRGB();
+            document.body.style.backgroundColor = randomColor;
+        }
+    </script>
+</body>
+</html>

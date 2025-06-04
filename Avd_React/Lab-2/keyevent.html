@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keyboard Events Demo</title>
+    <style>
+        #output {
+            width: 400px;
+            height: 200px;
+            margin: 20px;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h2>Keyboard Events Demo</h2>
+    <p>Press any key to see the event details:</p>
+    <div id="output"></div>
+
+    <script>
+        const output = document.getElementById('output');
+
+        document.addEventListener('keydown', function(event) {
+            output.innerHTML = `
+                <p>Keydown Event:</p>
+                <p>Key: ${event.key}</p>
+                <p>Key Code: ${event.keyCode}</p>
+                <p>Ctrl Key: ${event.ctrlKey}</p>
+                <p>Alt Key: ${event.altKey}</p>
+                <p>Shift Key: ${event.shiftKey}</p>
+            `;
+        });
+
+        document.addEventListener('keypress', function(event) {
+            output.innerHTML += `
+                <p>Keypress Event:</p>
+                <p>Key: ${event.key}</p>
+                <p>Key Code: ${event.keyCode}</p>
+            `;
+        });
+    </script>
+</body>
+</html>
