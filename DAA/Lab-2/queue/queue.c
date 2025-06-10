@@ -47,5 +47,10 @@ void display() {
 }
 
 void main() {
-
+    enqueue(20);
+    enqueue(30);
+    enqueue(10);
+    enqueue(260);
+    dequeue();
+    display();
 }
