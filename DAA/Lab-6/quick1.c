@@ -45,7 +45,7 @@ void print_array(int arr[], int size) {
 }
 
 int main() {
-    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int arr[] = {4,3,2,111,2,3,444,32,4444,2};
     int n = sizeof(arr) / sizeof(arr[0]);
         
     quick_sort(arr, 0, n - 1);
