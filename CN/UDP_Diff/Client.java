@@ -11,15 +11,11 @@ public class Client
         Scanner sc = new Scanner(System.in);
 
         // Step 1:Create the socket object for
-        // carrying the data. Client runs on port 8080
-        DatagramSocket ds = new DatagramSocket(8080);
+        // carrying the data.
+        DatagramSocket ds = new DatagramSocket();
 
-        InetAddress ip = InetAddress.getLocalHost();
+        InetAddress ip = InetAddress.getByName("10.20.64.114");
         byte buf[] = null;
-
-        System.out.println("UDP Client started on port 8080");
-        System.out.println("Connecting to server on port 9090");
-        System.out.println("Enter messages (type 'bye' to exit):");
 
         // loop while user not enters "bye"
         while (true)
@@ -30,9 +26,9 @@ public class Client
             buf = inp.getBytes();
 
             // Step 2 : Create the datagramPacket for sending
-            // the data to server port 9090.
+            // the data.
             DatagramPacket DpSend =
-                  new DatagramPacket(buf, buf.length, ip, 9090);
+                  new DatagramPacket(buf, buf.length, ip, 1234);
 
             // Step 3 : invoke the send call to actually send
             // the data.

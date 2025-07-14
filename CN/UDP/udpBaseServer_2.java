@@ -10,9 +10,12 @@ public class udpBaseServer_2
 {
     public static void main(String[] args) throws IOException
     {
-        // Step 1 : Create a socket to listen at port 1234
-        DatagramSocket ds = new DatagramSocket(1234);
+        // Step 1 : Create a socket to listen at port 9090
+        DatagramSocket ds = new DatagramSocket(9090);
         byte[] receive = new byte[65535];
+
+        System.out.println("UDP Server started on port 9090");
+        System.out.println("Waiting for client messages...");
 
         DatagramPacket DpReceive = null;
         while (true)

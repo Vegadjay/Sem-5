@@ -6,6 +6,7 @@ public class Server {
     {
         // create a server socket on port number 9090
         ServerSocket serverSocket = new ServerSocket(9090);
+        System.out.println("TCP Server started on port 9090");
         System.out.println("Server is running and waiting for client connection...");
 
         // Accept incoming client connection
