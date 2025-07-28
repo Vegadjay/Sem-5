@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Events Demo</title>
+    <style>
+        .form-group {
+            margin: 15px 0;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Events Demo</h1>
+    <form id="myForm">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" cols="50" placeholder="Enter your message"></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="output"></div>
+
+    <script>
+        const form = document.getElementById('myForm');
+        const output = document.getElementById('output');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            output.innerHTML += '<p>Form submitted!</p>';
+        });
+
+        form.addEventListener('focusin', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                output.innerHTML += `<p>Focus on: ${e.target.name}</p>`;
+            }
+        });
+
+        form.addEventListener('focusout', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                output.innerHTML += `<p>Blur from: ${e.target.name}</p>`;
+            }
+        });
+
+        form.addEventListener('input', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+                output.innerHTML += `<p>Input in: ${e.target.name}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

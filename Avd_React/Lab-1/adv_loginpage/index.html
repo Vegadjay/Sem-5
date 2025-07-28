@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f0f2f5;
+        }
+
+        .login-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1a73e8;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 10px;
+            top: 38px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #1557b0;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Advanced Login</h2>
+        <form id="loginForm" onsubmit="return validateForm(event)">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+                <div class="error" id="usernameError">Username must be exactly 8 characters</div>
+            </div>
+            <div class="form-group">
+                <label for="enrollment">Enrollment Number</label>
+                <input type="text" id="enrollment" name="enrollment" required>
+                <div class="error" id="enrollmentError">Enrollment number must not exceed 11 digits</div>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" required>
+                <div class="error" id="ageError">Age must be greater than 18</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error" id="emailError">Please enter a valid email address</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <span class="show-password" onclick="togglePassword('password')">👁️</span>
+                <div class="error" id="passwordError">Password must be between 8 and 12 characters</div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <span class="show-password" onclick="togglePassword('confirmPassword')">👁️</span>
+                <div class="error" id="confirmPasswordError">Passwords do not match</div>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            let isValid = true;
+
+            // Username validation
+            const username = document.getElementById('username').value;
+            if (username.length !== 8) {
+                document.getElementById('usernameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('usernameError').style.display = 'none';
+            }
+
+            // Enrollment validation
+            const enrollment = document.getElementById('enrollment').value;
+            if (enrollment.length > 11) {
+                document.getElementById('enrollmentError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('enrollmentError').style.display = 'none';
+            }
+
+            // Age validation
+            const age = parseInt(document.getElementById('age').value);
+            if (age <= 18) {
+                document.getElementById('ageError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('ageError').style.display = 'none';
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+            }
+
+            // Password validation
+            const password = document.getElementById('password').value;
+            if (password.length < 8 || password.length > 12) {
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('passwordError').style.display = 'none';
+            }
+
+            // Confirm password validation
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('confirmPasswordError').style.display = 'none';
+            }
+
+            if (isValid) {
+                alert('Form submitted successfully!');
+                document.getElementById('loginForm').reset();
+            }
+
+            return false;
+        }
+
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+    </script>
+</body>
+</html>

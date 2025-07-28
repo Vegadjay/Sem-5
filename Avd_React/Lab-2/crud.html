@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD on Array</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input,
+        button {
+            margin: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>CRUD Operations on Array</h2>
+    <input type="text" id="itemInput" placeholder="Enter item">
+    <button onclick="addItem()">Add</button>
+    <button onclick="updateItem()" id="updateBtn" style="display:none;">Update</button>
+    <br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Item</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="itemTable"></tbody>
+    </table>
+
+    <script>
+        let items = [];
+        let editIndex = -1;
+
+        function renderTable() {
+            const table = document.getElementById('itemTable');
+            table.innerHTML = '';
+            items.forEach((item, idx) => {
+                table.innerHTML += `
+                    <tr>
+                        <td>${idx + 1}</td>
+                        <td>${item}</td>
+                        <td>
+                            <button onclick="editItem(${idx})">Edit</button>
+                            <button onclick="deleteItem(${idx})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function addItem() {
+            const input = document.getElementById('itemInput');
+            const value = input.value.trim();
+            if (value) {
+                items.push(value);
+                input.value = '';
+                renderTable();
+            }
+        }
+
+        function editItem(index) {
+            document.getElementById('itemInput').value = items[index];
+            editIndex = index;
+            document.getElementById('updateBtn').style.display = 'inline';
+        }
+
+        function updateItem() {
+            const input = document.getElementById('itemInput');
+            const value = input.value.trim();
+            if (value && editIndex > -1) {
+                items[editIndex] = value;
+                editIndex = -1;
+                input.value = '';
+                document.getElementById('updateBtn').style.display = 'none';
+                renderTable();
+            }
+        }
+
+        function deleteItem(index) {
+            items.splice(index, 1);
+            renderTable();
+        }
+
+        renderTable();
+    </script>
+</body>
+
+</html>

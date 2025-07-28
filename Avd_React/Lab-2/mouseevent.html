@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Events Demo</title>
+    <style>
+        #eventBox {
+            width: 300px;
+            height: 200px;
+            border: 2px solid black;
+            margin: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mouse Events Demo</h1>
+    <div id="eventBox">
+        Move your mouse over this box to see different mouse events
+    </div>
+    <p id="eventInfo">Event information will appear here</p>
+
+    <script>
+        const eventBox = document.getElementById('eventBox');
+        const eventInfo = document.getElementById('eventInfo');
+
+        eventBox.addEventListener('mouseover', (e) => {
+            eventInfo.textContent = 'Mouse Over Event';
+        });
+
+        eventBox.addEventListener('mouseout', (e) => {
+            eventInfo.textContent = 'Mouse Out Event';
+        });
+
+        eventBox.addEventListener('mousedown', (e) => {
+            eventInfo.textContent = 'Mouse Down Event';
+        });
+
+        eventBox.addEventListener('mouseup', (e) => {
+            eventInfo.textContent = 'Mouse Up Event';
+        });
+
+        eventBox.addEventListener('click', (e) => {
+            eventInfo.textContent = 'Click Event';
+        });
+
+        eventBox.addEventListener('dblclick', (e) => {
+            eventInfo.textContent = 'Double Click Event';
+        });
+
+        eventBox.addEventListener('mousemove', (e) => {
+            eventInfo.textContent = `Mouse Move Event - X: ${e.clientX}, Y: ${e.clientY}`;
+        });
+    </script>
+</body>
+</html>
